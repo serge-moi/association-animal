@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark perso_size20">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,8 +10,8 @@
                     L'asso
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item perso_ColorRoseMenu" href="#">Action</a></li>
-                    <li><a class="dropdown-item perso_ColorRoseMenu" href="#">Another action</a></li>
+                    <li><a class="dropdown-item perso_ColorRoseMenu" href="../Global/association.php">Qui sommes-nous ?</a></li>
+                    <li><a class="dropdown-item perso_ColorRoseMenu" href="../Global/partenaires.php">Partenaires</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
