@@ -1,0 +1,43 @@
+# On va lancer la réécriture
+RewriteEngine On
+
+# Permet de rediriger l'ensemble des pages vers index.php en remplacant apres le ? par la valeur qu'on va inscrire
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ index.php?page=$1
+
+# Les 3 principales erreurs sont 403 404 500
+ErrorDocument 301 /association-animal/index.php?page=error301
+ErrorDocument 302 /association-animal/index.php?page=error302
+ErrorDocument 400 /association-animal/index.php?page=error400
+ErrorDocument 401 /association-animal/index.php?page=error401
+ErrorDocument 402 /association-animal/index.php?page=error402
+ErrorDocument 403 /association-animal/index.php?page=error403
+ErrorDocument 404 /association-animal/index.php?page=error404
+ErrorDocument 405 /association-animal/index.php?page=error405
+ErrorDocument 500 /association-animal/index.php?page=error500
+ErrorDocument 505 /association-animal/index.php?page=error505
+
+# # Empeche le listing
+Options All -Indexes
+# Masque les infos serveurs
+ServerSignature Off
+# Active le suivi des liens symboliques
+Options +FollowSymLinks
+# Forcer l'encodage des fichiers txt et html en utf8
+AddDefaultCharset UTF-8
+
+# Protection XSS, clickJacking et Mime-Type
+<ifModule mod_headers.c>
+Header set X-XSS-Protection "1; mode=block"
+Header always append X-Frame-Options SAMEORIGIN
+Header set X-Content-Type-Options: "nosniff"
+</ifModule>
+
+# Protection contre les injections de fichiers
+RewriteCond %{REQUEST_METHOD} GET
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=http:// [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=(\.\.//?)+ [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=/([a-z0-9_.]//?)+ [NC]
+RewriteRule .* - [F]
